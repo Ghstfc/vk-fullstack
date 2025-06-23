@@ -47,6 +47,8 @@ RUN npm ci --only=production && npm cache clean --force
 
 USER node
 
+CMD ["sh", "-c", "npx typeorm migration:run -d dist/data-source.js && node dist/main.js"]
+
 ###################
 # PRODUCTION
 ###################

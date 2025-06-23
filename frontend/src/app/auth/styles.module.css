@@ -1,0 +1,19 @@
+.userForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    width: fit-content;
+
+}
+
+.loginPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 140px;
+    gap: 16px;
+}

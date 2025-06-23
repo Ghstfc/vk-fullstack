@@ -1,0 +1,14 @@
+.image {
+    object-fit: cover;
+}
+
+.card {
+    position: relative;
+    width: 225px;
+    height: 225px;
+}
+
+/*.image:hover {*/
+/*    transform: scale(1.07);*/
+/*    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.5);*/
+/*}*/

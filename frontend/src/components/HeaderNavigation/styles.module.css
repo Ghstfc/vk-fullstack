@@ -1,0 +1,30 @@
+.navigation {
+    width: 100%;
+    height: 64px;
+    padding: 0 62px;
+
+    background-color: var(--header-color);
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigationLeft {
+    display: flex;
+}
+
+.navigationRight {
+
+}
+
+.navigationItem {
+    text-align: center;
+    line-height: 64px;
+    padding: 0 16px;
+    cursor: pointer;
+}
+
+.navigationItem:hover {
+    background-color: var(--header-choosed-color);
+}

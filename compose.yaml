@@ -1,21 +1,4 @@
-version: '3.7'
 services:
-  proxy:
-    container_name: cat-pinterest-proxy
-    image: nginx:1.24-alpine-slim
-    volumes:
-      - type: bind
-        source: ./nginx.conf
-        target: /etc/nginx/nginx.conf
-        read_only: true
-    depends_on:
-      cat-pinterest-api:
-        condition: service_started
-    ports:
-      - "8080:80"
-    networks:
-      - cat-pinterest-net
-
   cat-pinterest-api:
     container_name: cat-pinterest-api
     image: cat-pinterest-api
@@ -23,8 +6,10 @@ services:
       context: ./api/
     networks:
       - cat-pinterest-net
+    env_file:
+      - ./api/.env.production
     environment:
-      NODE_ENV: prod
+      NODE_ENV: production
     depends_on:
       cat-pinterest-api-pg:
         condition: service_healthy
@@ -33,22 +18,25 @@ services:
     container_name: cat-pinterest-front
     image: cat-pinterest-front
     build:
-      context: ./front/
+      context: ./frontend/
     networks:
       - cat-pinterest-net
     environment:
-      NODE_ENV: prod
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
 
   cat-pinterest-api-pg:
     container_name: cat-pinterest-api-pg
-    image: postgres:14
+    image: postgres:16
     networks:
       - cat-pinterest-net
     environment:
       POSTGRES_PASSWORD: 1
       POSTGRES_USER: postgres
       POSTGRES_DB: support_lk_db
-    #      PG_DATA: /var/lib/postgresql/data
+#    volumes:
+#      - pg_data:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 2s
@@ -57,3 +45,6 @@ services:
 
 networks:
   cat-pinterest-net:
+#
+#volumes:
+#  pg_data:

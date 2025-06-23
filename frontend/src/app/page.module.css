@@ -1,0 +1,17 @@
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    gap: 40px;
+    justify-content: center;
+}
+
+.main {
+    padding: 48px 62px;
+}
+
+.loaderWrapper {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
